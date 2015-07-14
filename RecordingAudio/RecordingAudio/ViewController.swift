@@ -86,7 +86,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     @IBAction func changeVolume(sender: AnyObject) {
         let valor = sliderVolume.value * 100
         lblVolume.text = "\(sliderVolume.value * 100) "
-        
+        // Em média é melhor 40 
         audioPlayer?.volume = valor
         
     }
