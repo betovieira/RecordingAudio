@@ -8,16 +8,20 @@
 
 import UIKit
 import AVFoundation
+import Parse
 
 class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     @IBOutlet var recordButton: UIButton!
     @IBOutlet var playButton: UIButton!
     @IBOutlet var stopButton: UIButton!
     
+    @IBOutlet var lblTime: UILabel!
+    @IBOutlet var lblSize: UILabel!
     @IBOutlet var lblVolume: UILabel!
     @IBOutlet var sliderVolume: UISlider!
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
+    var soundFilePath:String = ""
     
     
     
@@ -29,15 +33,18 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
         let docsDir = dirPaths[0] as! String
-        let soundFilePath = docsDir.stringByAppendingPathComponent("sound.caf")
+        soundFilePath = docsDir.stringByAppendingPathComponent("/bles.caf")
+        
+        println(soundFilePath)
+        
         let soundFileUrl = NSURL(fileURLWithPath: soundFilePath)
         
         
         let recordingSettings =
         [
-            AVFormatIDKey: kAudioFormatAppleLossless,
-            AVEncoderAudioQualityKey : AVAudioQuality.High.rawValue,
-            AVEncoderBitRateKey : 320000,
+            AVFormatIDKey: kAudioFormatAppleIMA4,
+            AVEncoderAudioQualityKey : AVAudioQuality.Min.rawValue,
+            AVEncoderBitRateKey : 128,
             AVNumberOfChannelsKey: 2,
             AVSampleRateKey : 44100.0
         ]
@@ -52,6 +59,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         }
         
         audioRecorder = AVAudioRecorder(URL: soundFileUrl, settings: recordingSettings as [NSObject : AnyObject], error: &error)
+        
         
         if let err = error {
             println("Erro ao gravar carai 2")
@@ -81,12 +89,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
             audioPlayer?.stop()
         }
         
+        
+        
     }
 
     @IBAction func changeVolume(sender: AnyObject) {
         let valor = sliderVolume.value * 100
         lblVolume.text = "\(sliderVolume.value * 100) "
-        // Em média é melhor 40 
+        // Em média é melhor 40
         audioPlayer?.volume = valor
         
     }
@@ -122,6 +132,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         
+        println("Acabou carai")
+        
+        
     }
     
     func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder!, error: NSError!) {
@@ -131,6 +144,28 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func saveInDatabase(sender: AnyObject) {
+        
+        let data = NSData(contentsOfFile: soundFilePath)
+        let size = String(data!.length / (1000))
+        
+        let tempo = audioRecorder?.currentTime
+        
+        
+        let audio = PFFile(name: "sss.caf", contentsAtPath: soundFilePath)
+        
+        lblSize.text = "\((data!.length as Int))"
+        lblTime.text = "\(tempo)"
+        
+        
+        var fileToUpload = PFObject(className: "testeSalvaAudio")
+        fileToUpload["texto"] = "Top"
+        fileToUpload["audio"] = audio
+        
+        //fileToUpload.saveInBackground()
+        
+        
     }
 
 
