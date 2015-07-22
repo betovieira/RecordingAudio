@@ -22,6 +22,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
     var soundFilePath:String = ""
+    var timer: NSTimer?
     
     
     
@@ -29,6 +30,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         super.viewDidLoad()
         playButton.enabled = false
         stopButton.enabled = false
+        
+        
         
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
@@ -75,6 +78,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
             playButton.enabled = false
             stopButton.enabled = true
             audioRecorder!.record()
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("atualizaTempo"), userInfo: nil, repeats: true)
         }
         
     }
@@ -85,12 +89,23 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         
         if audioRecorder?.recording == true {
             audioRecorder?.stop()
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.0, target: self, selector: Selector(""), userInfo: nil, repeats: false)
         } else {
             audioPlayer?.stop()
         }
         
+    }
+    
+    func atualizaTempo() {
+        let data = NSData(contentsOfFile: soundFilePath)
+        
+        let size = String(stringInterpolationSegment: Float(data!.length) / 1000000.0  )
+        
+        let tempo = NSString(format: "%.2f", Float(audioRecorder!.currentTime))
         
         
+        lblSize.text = "\((size)) Mb"
+        lblTime.text = "\(tempo) seg."
     }
 
     @IBAction func changeVolume(sender: AnyObject) {
@@ -148,17 +163,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     @IBAction func saveInDatabase(sender: AnyObject) {
         
         let data = NSData(contentsOfFile: soundFilePath)
-        let size = String(data!.length / (1000))
-        
-        let tempo = audioRecorder?.currentTime
-        
         
         let audio = PFFile(name: "sss.caf", contentsAtPath: soundFilePath)
-        
-        lblSize.text = "\((data!.length as Int))"
-        lblTime.text = "\(tempo)"
-        
-        
+     
         var fileToUpload = PFObject(className: "testeSalvaAudio")
         fileToUpload["texto"] = "Top"
         fileToUpload["audio"] = audio
