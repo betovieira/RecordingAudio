@@ -76,6 +76,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 % enviados" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP7-2d-WUU">
+                                <rect key="frame" x="171" y="438" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -84,6 +90,7 @@
                         <outlet property="lblSize" destination="6zn-px-iwO" id="P6J-GL-c8Q"/>
                         <outlet property="lblTime" destination="pa6-av-7GJ" id="VoF-5s-Icn"/>
                         <outlet property="lblVolume" destination="VQh-dJ-WX9" id="hIV-MR-l6r"/>
+                        <outlet property="percentSended" destination="BP7-2d-WUU" id="2QZ-o0-OiM"/>
                         <outlet property="playButton" destination="mK2-i4-kda" id="Cr5-V2-sam"/>
                         <outlet property="recordButton" destination="icx-5H-bqR" id="k7g-BB-WqE"/>
                         <outlet property="sliderVolume" destination="83e-Mp-7Sz" id="pdU-At-weS"/>

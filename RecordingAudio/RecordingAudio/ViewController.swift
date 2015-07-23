@@ -15,6 +15,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     @IBOutlet var playButton: UIButton!
     @IBOutlet var stopButton: UIButton!
     
+    @IBOutlet var percentSended: UILabel!
     @IBOutlet var lblTime: UILabel!
     @IBOutlet var lblSize: UILabel!
     @IBOutlet var lblVolume: UILabel!
@@ -42,11 +43,15 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         
         let soundFileUrl = NSURL(fileURLWithPath: soundFilePath)
         
+        /* EM 10 MB
+            - kAudioFormatAppleIMA4 = 214 seg
+            -
+        */
         
         let recordingSettings =
         [
             AVFormatIDKey: kAudioFormatAppleIMA4,
-            AVEncoderAudioQualityKey : AVAudioQuality.Min.rawValue,
+            AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
             AVEncoderBitRateKey : 128,
             AVNumberOfChannelsKey: 2,
             AVSampleRateKey : 44100.0
@@ -89,7 +94,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         
         if audioRecorder?.recording == true {
             audioRecorder?.stop()
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.0, target: self, selector: Selector(""), userInfo: nil, repeats: false)
+            timer = NSTimer()
         } else {
             audioPlayer?.stop()
         }
@@ -170,7 +175,20 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         fileToUpload["texto"] = "Top"
         fileToUpload["audio"] = audio
         
-        //fileToUpload.saveInBackground()
+        audio.saveInBackgroundWithProgressBlock({ progress -> Void in
+            self.percentSended.text = "\(progress) %"
+        
+        })
+        
+        fileToUpload.saveInBackgroundWithBlock({ (success, error) -> Void in
+            if success {
+                println("Foi !")
+            }
+            if let err = error {
+                println("Erro")
+            }
+            
+        })
         
         
     }
