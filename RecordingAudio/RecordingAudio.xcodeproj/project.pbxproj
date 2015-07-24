@@ -22,8 +22,12 @@
 		DB825B0A1B55AAE00066005B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB825AFF1B55AAE00066005B /* MobileCoreServices.framework */; };
 		DB825B0B1B55AAE00066005B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB825B001B55AAE00066005B /* QuartzCore.framework */; };
 		DB825B0C1B55AAE00066005B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB825B011B55AAE00066005B /* Security.framework */; };
-		DB825B0D1B55AAE00066005B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB825B021B55AAE00066005B /* StoreKit.framework */; };
 		DB825B0E1B55AAE00066005B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB825B031B55AAE00066005B /* SystemConfiguration.framework */; };
+		DBECAA581B61B54A0058E0DA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBECAA551B61B54A0058E0DA /* FBSDKCoreKit.framework */; };
+		DBECAA591B61B54A0058E0DA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBECAA561B61B54A0058E0DA /* FBSDKLoginKit.framework */; };
+		DBECAA5A1B61B54A0058E0DA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBECAA571B61B54A0058E0DA /* FBSDKShareKit.framework */; };
+		DBECAA5C1B61B8310058E0DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBECAA5B1B61B8310058E0DA /* LoginViewController.swift */; };
+		DBECAA621B61BEE60058E0DA /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBECAA611B61BEE60058E0DA /* FacebookSDKStrings.bundle */; };
 		DBFAA15B1B55504300D9C503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFAA15A1B55504300D9C503 /* AppDelegate.swift */; };
 		DBFAA15D1B55504300D9C503 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFAA15C1B55504300D9C503 /* ViewController.swift */; };
 		DBFAA1601B55504300D9C503 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBFAA15E1B55504300D9C503 /* Main.storyboard */; };
@@ -58,8 +62,13 @@
 		DB825AFF1B55AAE00066005B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DB825B001B55AAE00066005B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DB825B011B55AAE00066005B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		DB825B021B55AAE00066005B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DB825B031B55AAE00066005B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DBECAA551B61B54A0058E0DA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		DBECAA561B61B54A0058E0DA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		DBECAA571B61B54A0058E0DA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		DBECAA5B1B61B8310058E0DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DBECAA611B61BEE60058E0DA /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
+		DBECAA671B61C72B0058E0DA /* RecordingAudio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecordingAudio-Bridging-Header.h"; sourceTree = "<group>"; };
 		DBFAA1551B55504300D9C503 /* RecordingAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordingAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBFAA1591B55504300D9C503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBFAA15A1B55504300D9C503 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,11 +93,13 @@
 				DB825B081B55AAE00066005B /* libsqlite3.dylib in Frameworks */,
 				DB825B091B55AAE00066005B /* libz.dylib in Frameworks */,
 				DB825B0A1B55AAE00066005B /* MobileCoreServices.framework in Frameworks */,
+				DBECAA581B61B54A0058E0DA /* FBSDKCoreKit.framework in Frameworks */,
 				DB825B0B1B55AAE00066005B /* QuartzCore.framework in Frameworks */,
 				DB825B0C1B55AAE00066005B /* Security.framework in Frameworks */,
-				DB825B0D1B55AAE00066005B /* StoreKit.framework in Frameworks */,
 				DB825B0E1B55AAE00066005B /* SystemConfiguration.framework in Frameworks */,
+				DBECAA5A1B61B54A0058E0DA /* FBSDKShareKit.framework in Frameworks */,
 				DB825AF41B55AA530066005B /* Parse.framework in Frameworks */,
+				DBECAA591B61B54A0058E0DA /* FBSDKLoginKit.framework in Frameworks */,
 				DB825AF81B55AA530066005B /* ParseUI.framework in Frameworks */,
 				DB825AF71B55AA530066005B /* ParseFacebookUtilsV4.framework in Frameworks */,
 				DB825AF31B55AA520066005B /* Bolts.framework in Frameworks */,
@@ -110,6 +121,10 @@
 		DB825AEC1B55AA420066005B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBECAA611B61BEE60058E0DA /* FacebookSDKStrings.bundle */,
+				DBECAA551B61B54A0058E0DA /* FBSDKCoreKit.framework */,
+				DBECAA561B61B54A0058E0DA /* FBSDKLoginKit.framework */,
+				DBECAA571B61B54A0058E0DA /* FBSDKShareKit.framework */,
 				DB825AF91B55AAE00066005B /* AudioToolbox.framework */,
 				DB825AFA1B55AAE00066005B /* CFNetwork.framework */,
 				DB825AFB1B55AAE00066005B /* CoreGraphics.framework */,
@@ -119,7 +134,6 @@
 				DB825AFF1B55AAE00066005B /* MobileCoreServices.framework */,
 				DB825B001B55AAE00066005B /* QuartzCore.framework */,
 				DB825B011B55AAE00066005B /* Security.framework */,
-				DB825B021B55AAE00066005B /* StoreKit.framework */,
 				DB825B031B55AAE00066005B /* SystemConfiguration.framework */,
 				DB825AED1B55AA520066005B /* Bolts.framework */,
 				DB825AEE1B55AA520066005B /* Parse.framework */,
@@ -155,6 +169,8 @@
 			children = (
 				DBFAA15A1B55504300D9C503 /* AppDelegate.swift */,
 				DBFAA15C1B55504300D9C503 /* ViewController.swift */,
+				DBECAA5B1B61B8310058E0DA /* LoginViewController.swift */,
+				DBECAA671B61C72B0058E0DA /* RecordingAudio-Bridging-Header.h */,
 				DBFAA15E1B55504300D9C503 /* Main.storyboard */,
 				DBFAA1611B55504300D9C503 /* Images.xcassets */,
 				DBFAA1631B55504300D9C503 /* LaunchScreen.xib */,
@@ -237,6 +253,12 @@
 				TargetAttributes = {
 					DBFAA1541B55504300D9C503 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7SCH5Y74F7;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					DBFAA1691B55504300D9C503 = {
 						CreatedOnToolsVersion = 6.4;
@@ -271,6 +293,7 @@
 				DBFAA1601B55504300D9C503 /* Main.storyboard in Resources */,
 				DBFAA1651B55504300D9C503 /* LaunchScreen.xib in Resources */,
 				DBFAA1621B55504300D9C503 /* Images.xcassets in Resources */,
+				DBECAA621B61BEE60058E0DA /* FacebookSDKStrings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBECAA5C1B61B8310058E0DA /* LoginViewController.swift in Sources */,
 				DBFAA15D1B55504300D9C503 /* ViewController.swift in Sources */,
 				DBFAA15B1B55504300D9C503 /* AppDelegate.swift in Sources */,
 			);
@@ -418,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -425,6 +450,8 @@
 				INFOPLIST_FILE = RecordingAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecordingAudio/RecordingAudio-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -432,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -439,6 +467,7 @@
 				INFOPLIST_FILE = RecordingAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecordingAudio/RecordingAudio-Bridging-Header.h";
 			};
 			name = Release;
 		};
