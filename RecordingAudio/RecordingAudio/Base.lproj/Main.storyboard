@@ -131,6 +131,15 @@
                                     <action selector="click_LoginViaFace:" destination="xy3-oy-R90" eventType="touchUpInside" id="beJ-Xq-obV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0i-he-YpY">
+                                <rect key="frame" x="111" y="481" width="152" height="30"/>
+                                <state key="normal" title="Share Page Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="eventClickShareButton:" destination="xy3-oy-R90" eventType="touchUpInside" id="30F-Q9-sKg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

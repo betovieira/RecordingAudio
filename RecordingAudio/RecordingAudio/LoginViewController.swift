@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FBSDKShareKit
 import Parse
 import Bolts
 
@@ -16,6 +17,15 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if (FBSDKAccessToken.currentAccessToken() != nil) {
+            println("Logado ")
+        }
+        
+        
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -28,23 +38,40 @@ class LoginViewController: UIViewController {
     @IBAction func click_LoginViaFace(sender: AnyObject) {
 /// "user_friends", "public_profile", "user_friends"]
         
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["email","user_friends", "public_profile", "user_friends", "user_birthday"]) {
             (user, error) -> Void in
             if let user = user {
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
+                    self.getUserInfo()
                 } else {
                     
                     println("User logged in through Facebook!")
                 }
                 //println("\(user)")
-                self.getUserInfo()
+                
                 
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
             }
         }
     }
+    
+    @IBAction func eventClickShareButton(sender: AnyObject) {
+        
+        
+        
+        let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
+        content.contentURL = NSURL(string: "https://www.facebook.com/voicelegacy")
+        content.contentTitle = "TESTE DE SHARE NO IOS TOP DA GRADE!"
+        content.contentDescription = "Teste para ver se eu sei programar um share de um app novo que to fazendo!"
+        FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil)
+
+        
+        
+    }
+    
     
     func getUserInfo() -> Void
     {
