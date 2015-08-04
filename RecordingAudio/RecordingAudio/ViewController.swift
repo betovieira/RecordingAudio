@@ -37,7 +37,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
         let docsDir = dirPaths[0] as! String
-        soundFilePath = docsDir.stringByAppendingPathComponent("/bles.caf")
+        soundFilePath = docsDir.stringByAppendingPathComponent("/bles.mp3")
         
         println(soundFilePath)
         
@@ -117,7 +117,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         let valor = sliderVolume.value * 100
         lblVolume.text = "\(sliderVolume.value * 100) "
         // Em média é melhor 40
-        audioPlayer?.volume = valor
+        audioPlayer?.volume = 20.0
         
     }
     @IBAction func playAudio(sender: AnyObject) {
@@ -166,8 +166,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         // Dispose of any resources that can be recreated.
     }
     @IBAction func saveInDatabase(sender: AnyObject) {
-        
-        let data = NSData(contentsOfFile: soundFilePath)
         
         let audio = PFFile(name: "sss.caf", contentsAtPath: soundFilePath)
      

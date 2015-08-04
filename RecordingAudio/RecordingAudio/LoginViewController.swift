@@ -23,10 +23,6 @@ class LoginViewController: UIViewController {
             println("Logado ")
         }
         
-        
-        
-        
-        
         // Do any additional setup after loading the view.
     }
 
@@ -39,18 +35,18 @@ class LoginViewController: UIViewController {
 /// "user_friends", "public_profile", "user_friends"]
         
         
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(["email","user_friends", "public_profile", "user_friends", "user_birthday"]) {
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(["email","user_friends", "public_profile", "user_birthday"]) {
             (user, error) -> Void in
             if let user = user {
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
-                    self.getUserInfo()
+                    
                 } else {
                     
                     println("User logged in through Facebook!")
                 }
                 //println("\(user)")
-                
+                self.getUserInfo()
                 
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
@@ -59,16 +55,16 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func eventClickShareButton(sender: AnyObject) {
+        /* Receber PFObject */
+        var objectID = "ngJEwljP6k"
         
-        
+        let link = "http://sharelink-voicelegacy.herokuapp.com/historia/" + objectID
         
         let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
-        content.contentURL = NSURL(string: "https://www.facebook.com/voicelegacy")
-        content.contentTitle = "TESTE DE SHARE NO IOS TOP DA GRADE!"
-        content.contentDescription = "Teste para ver se eu sei programar um share de um app novo que to fazendo!"
+        content.contentURL = NSURL(string: link)
+        content.contentTitle = "Audio do Voice Legacy"
+        content.contentDescription = "Enviado por VoiceLegacy App"
         FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil)
-
-        
         
     }
     
@@ -81,6 +77,7 @@ class LoginViewController: UIViewController {
             
             if (error == nil && result != nil) {
                 let facebookData = result as! NSDictionary //FACEBOOK DATA IN DICTIONARY
+                
                 let userEmail = (facebookData.objectForKey("email") as! String)
                 let name = (facebookData.objectForKey("name") as! String)
                 let foto = (facebookData.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as! String)
